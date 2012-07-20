@@ -17,7 +17,6 @@
 @implementation MKButton
 
 @synthesize borderColor = _borderColor;
-@synthesize isRounded = _isRounded;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
@@ -50,7 +49,6 @@
     [self setBackgroundColor:[UIColor blackColor] forState:UIControlStateDisabled];        
     [self.layer setBorderWidth:2.0];
     [self.layer setMasksToBounds:YES];
-    [self setIsRounded:NO];
 }
 
 //- (void)setHighlighted:(BOOL)highlighted {
@@ -61,17 +59,6 @@
 //    [super setEnabled:enabled];
 //    [self setNeedsDisplay];
 //}
-
-- (void)setIsRounded:(BOOL)isRounded {
-    _isRounded = isRounded;
-    if (self.isRounded) {
-        [self.layer setCornerRadius:self.frame.size.height/2];            
-    }
-    else {
-        [self.layer setCornerRadius:0.0];    
-    }
-    
-}
 
 - (void)setBorderColor:(UIColor *)borderColor {
     _borderColor = borderColor;

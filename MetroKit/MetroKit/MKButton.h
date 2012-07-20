@@ -11,6 +11,5 @@
 @interface MKButton : UIButton
 
 @property (strong, nonatomic) UIColor* borderColor;
-@property (nonatomic) BOOL isRounded;
 
 @end
