@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ Flattened button
+ */
 @interface MKButton : UIButton
-
-@property (strong, nonatomic) UIColor* borderColor;
 
 @end

@@ -14,6 +14,12 @@
 #define kMetroButtonSelectedAlpha 0.5
 #define kMetroButtonDisabledAlpha 0.8
 
+@interface MKButton ()
+
+@property (strong, nonatomic) UIColor *borderColor;
+
+@end
+
 @implementation MKButton
 
 @synthesize borderColor = _borderColor;
@@ -60,13 +66,14 @@
 //    [self setNeedsDisplay];
 //}
 
-- (void)setBorderColor:(UIColor *)borderColor {
-    _borderColor = borderColor;
-    [self.layer setBorderColor:[self.borderColor CGColor]];        
+- (void)setTintColor:(UIColor *)tintColor {
+    //todo support tinting
+    [super setTintColor:tintColor];
 }
 
-- (void)setTintColor:(UIColor *)tintColor {
-    [super setTintColor:tintColor];
+- (void)setBorderColor:(UIColor *)borderColor {
+    _borderColor = borderColor;
+    [self.layer setBorderColor:[self.borderColor CGColor]];
 }
 
 - (void)setSelected:(BOOL)selected {
