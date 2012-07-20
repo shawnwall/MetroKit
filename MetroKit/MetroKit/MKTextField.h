@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ Flattened text field with square edges. Default state of white background & 
+ black text. 
+ */
 @interface MKTextField : UITextField
 
 @end

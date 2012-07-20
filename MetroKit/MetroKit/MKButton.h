@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 /**
- Flattened button
+ Flattened button with square edges. Default state of white border, black 
+ background & white text. Default highlight of white background, black text.
  */
 @interface MKButton : UIButton
 

@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MKKeyboardView : UIView {
-    NSArray *_buttons;
-}
+/**
+ Custom flattened UIKeyboard-like implementation supporting a US keyboard.
+ 
+ @discussion This needs to support orientation changes along with iPhone/iPad 
+ size changing.
+ */
+@interface MKKeyboardView : UIView 
 
 @property (nonatomic, assign) UITextField* target;
 @property (nonatomic) UIKeyboardType keyboardType;

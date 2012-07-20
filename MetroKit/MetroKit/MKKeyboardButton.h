@@ -13,6 +13,9 @@ typedef enum {
     MKKeyboardButtonModeCapitalized  
 } MKKeyboardButtonMode;
 
+/**
+ Flattened keyboard button with square edges used by MKKeyboardView.
+ */
 @interface MKKeyboardButton : UIButton
 
 @property (nonatomic, strong) NSString* value;
