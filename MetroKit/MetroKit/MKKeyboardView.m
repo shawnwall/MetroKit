@@ -56,7 +56,8 @@
     [self.target setText:[NSString stringWithFormat:@"%@%@", self.target.text, button.value]];
 }
 
--(void)setKeyboardType:(UIKeyboardType)keyboardType {
+-(void)setKeyboardType:(UIKeyboardType)keyboardType {    
+    //testing out layout, this code will need redone properly
     CGFloat x = 2;
     CGFloat y = 3;
     CGFloat xSpacing = 32;     
