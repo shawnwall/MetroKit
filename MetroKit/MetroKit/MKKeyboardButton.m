@@ -38,7 +38,7 @@
 }
 
 +(MKKeyboardButton*)button {
-    return [MKKeyboardButton buttonWithType:UIButtonTypeCustom];
+    return [MKKeyboardButton buttonWithTitle:nil];    
 }
 
 - (void)setDefaults {
