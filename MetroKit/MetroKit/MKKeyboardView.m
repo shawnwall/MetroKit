@@ -102,6 +102,10 @@
     //todo
 }
 
+-(void)returnPressed:(id)sender {
+    //todo
+}
+
 -(void)setTarget:(UITextField *)target {
     _target = target;
     [self setKeyboardType:target.keyboardType];
