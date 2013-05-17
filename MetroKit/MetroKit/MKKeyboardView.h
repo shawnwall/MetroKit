@@ -15,7 +15,9 @@
  size changing.
  */
 @interface MKKeyboardView : UIView 
-
+{
+    BOOL shift;
+}
 @property (nonatomic, assign) UITextField* target;
 @property (nonatomic) UIKeyboardType keyboardType;
 
