@@ -30,13 +30,14 @@
 }
 
 - (void)setDefaults {
-    [self setFont:[UIFont systemFontOfSize:16.0]];
+    [self setFont:[UIFont fontWithName:@"SourceSansPro-Light" size:16]];
     [self setBackgroundColor:[UIColor whiteColor]];    
     [self setTextColor:[UIColor blackColor]];
     [self setBorderStyle:UITextBorderStyleNone];
-    self.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
-    self.leftViewMode = UITextFieldViewModeAlways;   
-    [self setInputView:[MKKeyboardView sharedInstance]];    
+    self.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height/2-10, 10, 20)];
+    self.leftViewMode = UITextFieldViewModeAlways;
+    [self setInputView:[MKKeyboardView sharedInstance]];
+    self.layer.sublayerTransform = CATransform3DMakeTranslation(0, 5, 0);
 }
 
 - (BOOL)becomeFirstResponder
