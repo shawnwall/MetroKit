@@ -16,7 +16,7 @@
  */
 @interface MKKeyboardView : UIView 
 {
-    BOOL shift;
+    BOOL shiftOn;
 }
 @property (nonatomic, assign) UITextField* target;
 @property (nonatomic) UIKeyboardType keyboardType;
