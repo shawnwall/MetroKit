@@ -46,20 +46,29 @@
     [self setBorderColor:[UIColor whiteColor]];
     [self.titleLabel setFont:[UIFont systemFontOfSize:16.0]];    
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self setTitleColor:[self.borderColor colorWithAlphaComponent:kMetroButtonSelectedAlpha] forState:UIControlStateSelected];
-    [self setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
-    [self setTitleColor:[self.borderColor colorWithAlphaComponent:kMetroButtonDisabledAlpha] forState:UIControlStateDisabled];     
+    //[self setTitleColor:[self.borderColor colorWithAlphaComponent:kMetroButtonSelectedAlpha] forState:UIControlStateSelected];
+    //[self setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+    //[self setTitleColor:[self.borderColor colorWithAlphaComponent:kMetroButtonDisabledAlpha] forState:UIControlStateDisabled];
     [self setBackgroundColor:[UIColor blackColor] forState:UIControlStateNormal];    
-    [self setBackgroundColor:[UIColor blackColor] forState:UIControlStateSelected];
-    [self setBackgroundColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [self setBackgroundColor:[UIColor grayColor] forState:UIControlStateSelected];
+    [self setBackgroundColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [self setBackgroundColor:[UIColor blackColor] forState:UIControlStateDisabled];        
     [self.layer setBorderWidth:2.0];
     [self.layer setMasksToBounds:YES];
 }
 
-//- (void)setHighlighted:(BOOL)highlighted {
-//    [super setHighlighted:highlighted];
-//}
+- (void)setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+    if (highlighted)
+    {
+        self.backgroundColor = [UIColor grayColor];
+    }
+    else
+    {
+        self.backgroundColor = [UIColor blackColor];
+    }
+}
 
 //- (void)setEnabled:(BOOL)enabled {
 //    [super setEnabled:enabled];
@@ -104,6 +113,9 @@
     }  
 }
 
-
+- (void)setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state
+{
+    
+}
 
 @end
