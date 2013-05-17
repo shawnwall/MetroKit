@@ -53,7 +53,7 @@
         
         MKKeyboardButton *space = [MKKeyboardButton buttonWithTitle:@"space" value:@" "];    
         [space addTarget:self action:@selector(keyPressed:) forControlEvents:UIControlEventTouchUpInside];    
-        [space.titleLabel setFont:[UIFont systemFontOfSize:15.0]];    
+        [space.titleLabel setFont:[UIFont fontWithName:@"SourceSansPro-Semibold" size:15]];
         [space setFrame:CGRectMake(82, kKeyboardStartY+(3*kKeyboardSpacingY), 156, space.frame.size.height)];
         [self addSubview:space];
         
@@ -62,20 +62,20 @@
         [backspace setFrame:CGRectMake(274, kKeyboardStartY+(2*kKeyboardSpacingY), 44, backspace.frame.size.height)];
         [self addSubview:backspace];    
         
-        MKKeyboardButton *shift = [MKKeyboardButton button];    
-        [shift addTarget:self action:@selector(shift:) forControlEvents:UIControlEventTouchUpInside];    
-        [shift setFrame:CGRectMake(kKeyboardStartX, kKeyboardStartY+(2*kKeyboardSpacingY), 44, shift.frame.size.height)];
-        [self addSubview:shift];      
+        MKKeyboardButton *shiftButton = [MKKeyboardButton button];    
+        [shiftButton addTarget:self action:@selector(shift:) forControlEvents:UIControlEventTouchUpInside];    
+        [shift setFrame:CGRectMake(kKeyboardStartX, kKeyboardStartY+(2*kKeyboardSpacingY), 44, shiftButton.frame.size.height)];
+        [self addSubview:shiftButton];      
         
         MKKeyboardButton *modeKey = [MKKeyboardButton buttonWithTitle:@".?123"];    
         [modeKey addTarget:self action:@selector(changeMode:) forControlEvents:UIControlEventTouchUpInside];    
-        [modeKey.titleLabel setFont:[UIFont systemFontOfSize:15.0]];           
+        [modeKey.titleLabel setFont:[UIFont fontWithName:@"SourceSansPro-Semibold" size:15]];           
         [modeKey setFrame:CGRectMake(kKeyboardStartX, kKeyboardStartY+(3*kKeyboardSpacingY), 76, modeKey.frame.size.height)];
         [self addSubview:modeKey];  
         
-        MKKeyboardButton *returnKey = [MKKeyboardButton buttonWithTitle:@"return"];    
+        MKKeyboardButton *returnKey = [MKKeyboardButton buttonWithTitle:@"done"];    
         [returnKey addTarget:self action:@selector(returnPressed:) forControlEvents:UIControlEventTouchUpInside];    
-        [returnKey.titleLabel setFont:[UIFont systemFontOfSize:15.0]];       
+        [returnKey.titleLabel setFont:[UIFont fontWithName:@"SourceSansPro-Semibold" size:15]];       
         [returnKey setFrame:CGRectMake(242, kKeyboardStartY+(3*kKeyboardSpacingY), 76, returnKey.frame.size.height)];
         [self addSubview:returnKey];          
     }
@@ -86,6 +86,10 @@
     MKKeyboardButton *button = (MKKeyboardButton*)sender;
     //testing
     [self.target setText:[NSString stringWithFormat:@"%@%@", self.target.text, button.value]];
+    if (shift)
+    {
+        [self deShift];
+    }
 }
 
 -(void)backspace:(id)sender {
@@ -94,8 +98,42 @@
     }
 }
 
+- (void)deShift
+{
+    for (MKKeyboardButton *button in self.subviews)
+    {
+        button.titleLabel.text = button.titleLabel.text.lowercaseString;
+        button.value = button.value.lowercaseString;
+        shift = NO;
+    }
+}
+
 -(void)shift:(id)sender {
-    //todo
+    NSCharacterSet *set = [NSCharacterSet uppercaseLetterCharacterSet];
+    for (MKKeyboardButton *button in self.subviews)
+    {
+        if ([button.titleLabel.text rangeOfCharacterFromSet:set].location == NSNotFound)
+        {
+            if (![button.titleLabel.text isEqualToString:@"space"] && ![button.titleLabel.text isEqualToString:@"return"])
+            {
+                
+                button.titleLabel.text = button.titleLabel.text.uppercaseString;
+                button.value = button.value.uppercaseString;
+                button.titleLabel.textAlignment = NSTextAlignmentLeft;
+                shift = YES;
+            }
+            
+        }
+        else
+        {
+            if (![button.titleLabel.text isEqualToString:@"SPACE"] && ![button.titleLabel.text isEqualToString:@"RETURN"])
+            {
+                button.titleLabel.text = button.titleLabel.text.lowercaseString;
+                button.value = button.value.lowercaseString;
+                shift = NO;
+            }
+        }
+    }
 }
 
 -(void)changeMode:(id)sender {
@@ -103,7 +141,7 @@
 }
 
 -(void)returnPressed:(id)sender {
-    //todo
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pressedDone" object:self.target];
 }
 
 -(void)setTarget:(UITextField *)target {
@@ -134,8 +172,9 @@
                 for (int i=0; i< [line length]; i++) {
                     unichar c = [line characterAtIndex:i];
                     MKKeyboardButton *button = [MKKeyboardButton buttonWithTitle:[NSString stringWithFormat:@"%C", c]];
+                    [button.titleLabel setFont:[UIFont fontWithName:@"SourceSansPro-Semibold" size:16]];
                     [button addTarget:self action:@selector(keyPressed:) forControlEvents:UIControlEventTouchUpInside];
-                    [button setFrame:CGRectMake(start+kKeyboardStartX+(kKeyboardSpacingX*i), kKeyboardStartY+(row*kKeyboardSpacingY), button.frame.size.width, button.frame.size.height)];        
+                    [button setFrame:CGRectMake(start+kKeyboardStartX+(kKeyboardSpacingX*i), kKeyboardStartY+(row*kKeyboardSpacingY), 28, 49)];
                     [self addSubview:button];                    
                 }
                 row++;
