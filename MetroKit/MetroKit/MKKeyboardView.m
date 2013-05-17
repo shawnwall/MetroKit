@@ -118,7 +118,7 @@
             if (![button.titleLabel.text isEqualToString:@"space"] && ![button.titleLabel.text isEqualToString:@"return"])
             {
                 
-                button.titleLabel.text = button.titleLabel.text.uppercaseString;
+                [button setTitle:button.titleLabel.text.uppercaseString forState:UIControlStateNormal];
                 button.value = button.value.uppercaseString;
                 button.titleLabel.textAlignment = NSTextAlignmentLeft;
                 shiftOn = YES;
